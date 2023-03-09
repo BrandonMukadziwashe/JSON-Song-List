@@ -1,0 +1,74 @@
+[
+    {
+        "Title": "Njema",
+        "Artist": "Winky D",
+        "Genre": ["Zim Dancehall", "Zim Pop"],
+        "Year": "2020"
+    },
+    {
+        "Title": "Boi Boi",
+        "Artist": "Jah Prayzah",
+        "Genre": ["Zim Traditonal", "Afro Soul"],
+        "Year": "2021"
+    },
+    {
+        "Title": "Nharo",
+        "Artist": "Hillzy",
+        "Genre": ["RnB", "Soul"],
+        "Year": "2022"
+    },
+    {
+        "Title": "Help Me God",
+        "Artist": "Hillzy",
+        "Genre": ["Hip Hop", "Rap"],
+        "Year": "2017"
+    },
+    {
+        "Title": "Self Control",
+        "Artist": "Frank Ocean",
+        "Genre": ["Indie", "RnB"],
+        "Year": "2016"
+    },
+    {
+        "Title": "Kune Rima",
+        "Artist": "Jah Prayzah",
+        "Genre": ["Afro Pop","Afro Soul"],
+        "Year": "2016"
+    },
+    {
+        "Title": "Shamwari",
+        "Artist": "Freeman",
+        "Genre": ["Zim Dancehall", "Zim Pop"],
+        "Year": "2019"
+    },
+    {
+        "Title": "Mbwende",
+        "Artist": "Jah Prayzah",
+        "Genre": ["Zim Traditonal", "Afro Pop"],
+        "Year": "2011"
+    },
+    {
+        "Title": "Champaigne Poetry",
+        "Artist": "Drake",
+        "Genre": ["Hip Hop", "Rap"],
+        "Year": "2018"
+    },
+    {
+        "Title": "TV Room",
+        "Artist": "Hillzy",
+        "Genre": ["Zim Pop", "Hip Hop"],
+        "Year": "2021"
+    },
+    {
+        "Title": "Chimwe neChimwe",
+        "Artist": "Jah Prayzah",
+        "Genre": ["Zim Traditonal", "Afro Soul"],
+        "Year": "2021"
+    },
+    {
+        "Title": "Ibotso",
+        "Artist": "Winky D",
+        "Genre": ["Zim Dancehall", "Zim Pop"],
+        "Year": "2023"
+    }
+]

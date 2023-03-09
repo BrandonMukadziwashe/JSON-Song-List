@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <title>JSON SongList</title>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            scroll-padding-top: 3rem;
+            list-style: none;
+            text-decoration: none;
+        }
+    
+        .address{
+            visibility: hidden;
+        }
+    
+        form {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 80%;
+        }
+        label,input {
+            display: inline-block;
+        }
+        label {
+            width: 15%;
+            text-align: left;
+        }
+        
+        h1 {
+            width: 100%;
+            text-align: center;
+            font-size: 3.5rem;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    <h1>SONG LIST</h1>
+    <div id="selected">
+        
+    </div>
+    <form action="#">
+        <select name="genre" id="gen">
+            <option value="select">Select a genre</option>
+            <option value="Zim Dancehall">Hip Pop</option>
+            <option value="Zim Traditonal">RnB</option>
+            <option value="Rap">Rap</option>
+            <option value="Afro Soul">Soul</option>
+            <option value="Afro Pop">Indie</option>
+        </select>
+        <input type="button" id="filter" value="filter" onclick="get_genre()">
+    </form>
+
+    <h2>Part III</h2>
+    <div id="org_songs">
+    </div>
+
+    <h2>Part II</h2>
+    <div id="strings_songs">
+    </div>
+
+    
+
+    <script language="javascipt">
+        song_array = []
+        // Get data from json file
+        strHTML = "<ul>"
+        $.getJSON("songlist.json", function(data){
+            data.forEach(function(song) {
+            strHTML += "<br/> Title: "
+               + song.Title + "<br/> Artist: "
+               + song.Artist + "<br/> Genre: "
+               + song.Genre + "<br/> Year: "
+               + song.Year + "<br/>";
+               song_array.push('song');
+            });
+            strHTML += "</ul>";
+            document.getElementById('org_songs').innerHTML = strHTML;
+        });
+        
+        function get_genre()
+        {
+            var selected = document.getElementById('genre').value;
+
+            strHTML_2 = '<ul>';
+
+            for (var i = 0; i < song_array.length; i++) {
+                if (selected in song_array[i].Genre) {
+                    strHTML_2 += '<br/>' + song_array[i].Title + '<br/>';
+
+                }
+            }
+            strHTML_2 += '</ul>';
+            document.getElementById('selected').innerHTML = strHTML_2;
+        }
+    </script>
+    
+</body>
+</html>
