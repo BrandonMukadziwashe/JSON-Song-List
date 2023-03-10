@@ -4,104 +4,119 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-    <title>JSON SongList</title>
-    <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            scroll-padding-top: 3rem;
-            list-style: none;
-            text-decoration: none;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Songlist Json</title>
+    <style> 
+        h2{ 
+            font-family: Arial, Helvetica, sans-serif;
+            color: #f8fc02;
         }
-    
-        .address{
-            visibility: hidden;
-        }
-    
-        form {
-            width: 100%;
-            margin: 0 auto;
-            max-width: 80%;
-        }
-        label,input {
-            display: inline-block;
-        }
-        label {
-            width: 15%;
-            text-align: left;
+        input{
+            width: 100px;
+            height: 40px;
+            color: #060606; 
+            font-size: 20px;
+            background: fff;
+            border: 0;
+            border-radius: 20px;
+            outline: none;
+            margin-top:  20px;
+            cursor: pointer;
         }
         
-        h1 {
-            width: 100%;
-            text-align: center;
-            font-size: 3.5rem;
-            color: #222;
+        select{
+            width: 150px;
+            height: 40px;
         }
+        
+        body{
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #06ffa0;
+            font-weight: bold;
+            text-align: center;
+            background-image: url(image1.jpeg);   
+        }
+
     </style>
 </head>
-<body>
-    <h1>SONG LIST</h1>
-    <div id="selected">
-        
-    </div>
-    <form action="#">
-        <select name="genre" id="gen">
-            <option value="select">Select a genre</option>
-            <option value="Zim Dancehall">Hip Pop</option>
-            <option value="Zim Traditonal">RnB</option>
-            <option value="Rap">Rap</option>
-            <option value="Afro Soul">Soul</option>
-            <option value="Afro Pop">Indie</option>
-        </select>
-        <input type="button" id="filter" value="filter" onclick="get_genre()">
-    </form>
+<body> 
+    <h1> Brandon Mukadziwashe's Songlist</h1>
 
-    <h2>Part III</h2>
-    <div id="org_songs">
+     <h2>PART IV </h2>
+    <div>
+        <form action="#">
+            <label for="genreVar">Genres</label>
+            <select name="genres" id="genreVar">
+              <option value="select">Select a genre</option>
+              <option value="Zim Traditonal">Zim Traditonal</option>
+              <option value="Afro Pop">Afro Pop</option>
+              <option value="Hip Hop">Hip Hop</option>
+              <option value="Hip Hop">Afro Soul</option>
+              <option value="Zim Dancehall">Zim Dancehall</option>
+            </select>
+            <input type="button" id= "filt" value="Filter" onclick="get_genre_songs();"/>
+        </form>
     </div>
 
-    <h2>Part II</h2>
-    <div id="strings_songs">
+    <div id="selected_genres">
     </div>
 
-    
+     <h2> PART III </h2>
+    <div id="organized_format" style="border: 5px solid rgb(255, 64, 0); column-count: 3;">
+    </div>
 
-    <script language="javascipt">
-        song_array = []
-        // Get data from json file
-        strHTML = "<ul>"
-        $.getJSON("songlist.json", function(data){
-            data.forEach(function(song) {
-            strHTML += "<br/> Title: "
-               + song.Title + "<br/> Artist: "
-               + song.Artist + "<br/> Genre: "
-               + song.Genre + "<br/> Year: "
-               + song.Year + "<br/>";
-               song_array.push('song');
-            });
-            strHTML += "</ul>";
-            document.getElementById('org_songs').innerHTML = strHTML;
-        });
-        
-        function get_genre()
-        {
-            var selected = document.getElementById('genre').value;
+    <h2> PART II </h2>
+    <div id="songsVar"> 
+    </div>
 
-            strHTML_2 = '<ul>';
 
-            for (var i = 0; i < song_array.length; i++) {
-                if (selected in song_array[i].Genre) {
-                    strHTML_2 += '<br/>' + song_array[i].Title + '<br/>';
-
-                }
-            }
-            strHTML_2 += '</ul>';
-            document.getElementById('selected').innerHTML = strHTML_2;
-        }
-    </script>
     
 </body>
+<script> 
+var song_arr = new Array(); 
+    $.getJSON("songlist.json", function(data){ 
+        console.log("Hello!");
+        var mySongs;
+        mySongs = JSON.stringify(data); 
+        console.log(mySongs[0]);
+        document.getElementById('songsVar').innerHTML = mySongs; 
+
+// (**************************************)
+        strHTML= "<ul>";
+		data.forEach(function(song) { 
+		strHTML += "</br>" 
+			    + song.Title + "</br> Artist : " 
+				+ song.Artist + "</br> Genre : " 
+                + song.Genre + "</br> Released " 
+                + song.Year + "</br>"; 
+                song_arr.push(song);
+			}) 
+	strHTML += "</ul>"; 
+	document.getElementById('organized_format').innerHTML = strHTML;  /**/
+// (**************************************) 
+        console.log(mySongs); 
+    }) 
+    function get_genre_songs() 
+        { //get the song genre the client selected
+            var selected_genre = document.getElementById("genreVar").value;
+
+            str2HTML= "<ul>";
+            for(var i = 0; i < song_arr.length; i++)
+            {
+                if(song_arr[i].Genre == selected_genre)
+                { 
+                str2HTML += "</br>" 
+			    + song_arr[i].Title + "</br>"; 
+                }
+                else if(selected_genre == "select")
+                {
+                    alert("Please enter a valid genre from the drop down list");
+                    break; 
+                }
+            } 
+            str2HTML += "</ul>"; 
+            document.getElementById('selected_genres').innerHTML = str2HTML;  /**/
+        } 
+    </script> 
 </html>
